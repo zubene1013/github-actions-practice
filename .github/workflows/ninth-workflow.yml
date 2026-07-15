@@ -1,0 +1,32 @@
+name: if action workflow
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Test
+        if: runner.os == 'Linux'
+        run: |
+          ls ${{ github.workspace }}
+          echo Run Test
+
+  build:
+    if: github.repository == 'zubene1013/github-actions-practice'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Build
+        run: |
+          ls ${{ github.workspace }}
+          echo Run Build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Deploy1
+        id: run_deploy1
+        run: echo Run Deploy1
+      - name: Run Deploy2
+        if: steps.run_deploy1.outcome == 'success'
+        run: echo Run Deploy2
