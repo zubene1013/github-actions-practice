@@ -1,0 +1,21 @@
+name: env action workflow
+on: push
+# workflow 레벨
+env:
+  DAY_OF_WEEK: Monday
+jobs:
+  greeting_job:
+    runs-on: ubuntu-latest
+    # job 레벨
+    env:
+      Greeting: Hello
+    steps:
+      - name: Run greeting_job1
+        # step 레벨
+        env:
+          First_Name: Mona
+        if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+        run: |
+          echo greeting_job1 step LEVEL env : "$First_Name" , "${{ env.First_Name }}"
+          echo greeting_job1 job LEVEL env : "$Greeting" , "${{ env.Greeting }}"
+          echo greeting_job1 workflow LEVEL env : "$DAY_OF_WEEK" , "${{ env.DAY_OF_WEEK }}"
