@@ -1,0 +1,26 @@
+name: Environments secrets env action workflow
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: local
+    env:
+      DB_NAME1: ${{ secrets.DB_NAME }}
+      DB_PORT1: ${{ vars.DB_PORT }}
+    steps:
+      - name: Run Environments secrets env
+        run: |
+          echo local DB_NAME = "${{ env.DB_NAME1 }}"
+          echo local DB_PORT = "${{ env.DB_PORT1 }}"
+
+  prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    env:
+      DB_NAME2: ${{ secrets.DB_NAME }}
+      DB_PORT2: ${{ vars.DB_PORT }}
+    steps:
+      - name: Run Environments secrets env
+        run: |
+          echo prod DB_NAME = "${{ env.DB_NAME2 }}"
+          echo prod DB_PORT = "${{ env.DB_PORT2 }}"
