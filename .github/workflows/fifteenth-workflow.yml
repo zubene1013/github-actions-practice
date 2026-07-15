@@ -1,0 +1,14 @@
+name: secrets env action workflow
+on: push
+# workflow 레벨
+env:
+  USER_NAME: ${{ secrets.USER_NAME }}
+  USER_PW: ${{ secrets.USER_PW }}
+jobs:
+  secrets_env_variable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run secrets env
+        run: |
+          echo USER_NAME = "${{ env.USER_NAME }}"
+          echo USER_PW = "${{ env.USER_PW }}"
