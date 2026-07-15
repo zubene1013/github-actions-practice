@@ -1,0 +1,13 @@
+name: advanced event paths filter workflow
+on:
+  push:
+    paths:
+      - '**.js'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Test
+        run: |
+          echo github.event_name: "${{ github.event_name }}"
+          echo Run Test
