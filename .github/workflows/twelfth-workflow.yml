@@ -1,0 +1,13 @@
+name: advanced event filters action workflow
+on:
+  push:
+    branches:
+      - 'hotfix'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Test
+        run: |
+          echo github.event_name: "${{ github.event_name }}"
+          echo Run Test
