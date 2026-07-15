@@ -1,0 +1,12 @@
+name: advanced event action workflow
+
+on: [push, pull_request, issues, fork, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Test
+        run: |
+          echo github.event_name: "${{ github.event_name }}"
+          echo Run Test
